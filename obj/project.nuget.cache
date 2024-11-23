@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "7pYnzZ9Nqzs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\abrar\\source\\repos\\AnkiApp\\AnkiApp\\AnkiApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\abrar\\.nuget\\packages\\aqua-core\\5.4.1\\aqua-core.5.4.1.nupkg.sha512",
+    "C:\\Users\\abrar\\.nuget\\packages\\aqua-core-newtonsoft-json\\5.4.1\\aqua-core-newtonsoft-json.5.4.1.nupkg.sha512",
+    "C:\\Users\\abrar\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512",
+    "C:\\Users\\abrar\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\abrar\\.nuget\\packages\\remote.linq\\7.2.1\\remote.linq.7.2.1.nupkg.sha512",
+    "C:\\Users\\abrar\\.nuget\\packages\\remote.linq.newtonsoft.json\\7.2.1\\remote.linq.newtonsoft.json.7.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}
