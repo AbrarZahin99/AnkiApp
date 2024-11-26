@@ -101,8 +101,8 @@ namespace AnkiApp
                     modelName = "Basic",
                     fields = new
                     {
-                        Front = data.Front,
-                        Back = data.Back
+                        Front = Encryption.Encrypt(data.Front),
+                        Back = Encryption.Encrypt(data.Back)
                     },
                     tags = data.Tags
                 };
@@ -135,10 +135,13 @@ namespace AnkiApp
 
         public async Task<List<long>> FindCards(string deckName, string tags)
         {
-            var tagsList = 
-                tags.Split(',')
+            var tagsList = tags.Length > 0
+                ? tags.Split(',')
                 .Select(x => $"tag:{x}")
-                .ToList();
+                .ToList()
+                : null;
+
+            var tagsString = tagsList is not null ? $"({string.Join(" OR ", tagsList)})" : "";
 
             var payload = new
             {
@@ -146,7 +149,7 @@ namespace AnkiApp
                 @params = new 
                 { 
                     query = $"deck:{deckName}" +
-                    $"({string.Join(" OR ", tagsList)}) (is:due OR is:new)" 
+                    $"{tagsString} (is:due OR is:new)" 
                 }
             };
 

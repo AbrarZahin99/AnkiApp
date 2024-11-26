@@ -86,12 +86,12 @@ namespace AnkiApp
             int i = 0;
             foreach(var mapping in _questionToRadioButtons)
             {
-                var answer = $"{cardDetails[i]["fields"]["Back"]["value"]}";
+                var answer = $"{Encryption.Decrypt(cardDetails[i]["fields"]["Back"]["value"].ToString())}";
 
                 if (i == pos)
                 {
                     _currentCardId = cardIds[i];
-                    labelQuestion.Text = $"{cardDetails[i]["fields"]["Front"]["value"]}";
+                    labelQuestion.Text = $"{Encryption.Decrypt(cardDetails[i]["fields"]["Front"]["value"].ToString())}";
                     labelSolution.Text = answer;
                     mapping.Value.Text = answer;
                     _correctAnswer = mapping.Key;

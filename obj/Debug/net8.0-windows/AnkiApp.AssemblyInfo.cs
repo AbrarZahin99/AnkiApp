@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AnkiApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f6e5bcf64b1819fb32c0d4b966162a85f8cc4e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("AnkiApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AnkiApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

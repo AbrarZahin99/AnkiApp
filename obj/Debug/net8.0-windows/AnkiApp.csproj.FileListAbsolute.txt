@@ -24,3 +24,4 @@ C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\ref\AnkiApp
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.MakeSelectionsForm.resources
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\bin\Debug\net8.0-windows\CsvHelper.dll
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.FeedbackForm.resources
+C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.sourcelink.json
