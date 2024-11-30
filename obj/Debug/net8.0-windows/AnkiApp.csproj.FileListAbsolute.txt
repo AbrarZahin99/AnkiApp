@@ -9,7 +9,6 @@ C:\Users\abrar\source\repos\AnkiApp\AnkiApp\bin\Debug\net8.0-windows\Newtonsoft.
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\bin\Debug\net8.0-windows\Remote.Linq.dll
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\bin\Debug\net8.0-windows\Remote.Linq.Newtonsoft.Json.dll
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.csproj.AssemblyReference.cache
-C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.Form1.resources
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.csproj.GenerateResource.cache
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.AssemblyInfoInputs.cache
@@ -25,3 +24,4 @@ C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.Mak
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\bin\Debug\net8.0-windows\CsvHelper.dll
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.FeedbackForm.resources
 C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.sourcelink.json
+C:\Users\abrar\source\repos\AnkiApp\AnkiApp\obj\Debug\net8.0-windows\AnkiApp.Form1.resources

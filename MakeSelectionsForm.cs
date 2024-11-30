@@ -31,7 +31,9 @@ namespace AnkiApp
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            foreach(var item in listBox1.SelectedItems)
+            List<object> itemsToDelete = [.. listBox1.SelectedItems];
+
+            foreach (var item in itemsToDelete)
             {
                 listBox1.Items.Remove(item);
             }

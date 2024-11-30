@@ -1,10 +1,7 @@
-using System;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using CsvHelper.Configuration;
 using CsvHelper;
-using Newtonsoft.Json.Linq;  // Install Newtonsoft.Json via NuGet for JSON handling
+using CsvHelper.Configuration;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace AnkiApp
 {
@@ -26,8 +23,8 @@ namespace AnkiApp
     public partial class Form1 : Form
     {
         public const string DeckName = "Default1";
+        private readonly string LocalStoragePath = @$"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\VhApp\LocalStorage.json";
         private readonly AnkiService _ankiService = new();
-        private readonly List<string> _cards = new();
         private long? _currentCardId = null;
         private bool _solutionShown = true;
         private int _correctAnswersCount = 0;
@@ -45,10 +42,55 @@ namespace AnkiApp
                 { QuestionOption.Third, radioButtonOption2 },
                 { QuestionOption.Fourth, radioButtonOption3 }
             };
-            _cards =
-                ReadCsvFile(@"C:\Users\abrar\OneDrive\Desktop\file.csv")
-                .Select(x => x.Back)
-                .ToList();
+
+            StartAnkiInBackground();
+
+            GetCurrentScore();
+            GenerateQuestion();
+        }
+
+        private void StartAnkiInBackground()
+        {
+            var localAppDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+            var alreadyRunning = 
+                Process
+                .GetProcessesByName("Anki")
+                .Any();
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = @$"{localAppDataPath}\Programs\Anki\anki.exe",
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+
+            var process = new Process
+            {
+                StartInfo = startInfo
+            };
+            labelScore.Text = $"Score:{_correctAnswersCount}/{_questionsCount}";
+            process.Start();
+        }
+
+        private void GetCurrentScore()
+        {
+            try
+            {
+                if (!Directory.Exists(Path.GetDirectoryName(LocalStoragePath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(LocalStoragePath));
+                }
+                if(!File.Exists(LocalStoragePath)) 
+                {
+                    File.Create(LocalStoragePath);
+                }
+                var text = File.ReadAllText(LocalStoragePath);
+                var scores = JsonSerializer.Deserialize<SessionInfo>(text);
+                _correctAnswersCount = scores.ScoreCorrect;
+                _questionsCount = scores.ScoreTotalCount;
+            }
+            catch{ }
         }
 
         private void buttonEditSelection_Click(object sender, EventArgs e)
@@ -73,6 +115,11 @@ namespace AnkiApp
 
         private async void buttonNextQuestion_Click(object sender, EventArgs e)
         {
+            GenerateQuestion();
+        }
+
+        public async void GenerateQuestion()
+        {
             buttonNextQuestion.Enabled = false;
             var random = new Random(DateTime.Now.Millisecond);
             await UpdateDifficulty();
@@ -84,7 +131,7 @@ namespace AnkiApp
             var pos = random.Next(0, 4);
             var cardDetails = await _ankiService.GetCardsDetails(cardIds.Take(4).ToList());
             int i = 0;
-            foreach(var mapping in _questionToRadioButtons)
+            foreach (var mapping in _questionToRadioButtons)
             {
                 var answer = $"{Encryption.Decrypt(cardDetails[i]["fields"]["Back"]["value"].ToString())}";
 
@@ -132,6 +179,14 @@ namespace AnkiApp
             }
             labelSolution.Visible = true;
             labelScore.Text = $"Score:{_correctAnswersCount}/{_questionsCount}";
+            UpdateScore();
+        }
+
+        private void UpdateScore()
+        {
+            var sessionInfo = new SessionInfo { ScoreCorrect = _correctAnswersCount, ScoreTotalCount = _questionsCount };
+            var serialized = JsonSerializer.Serialize(sessionInfo);
+            File.WriteAllText(LocalStoragePath, serialized);
         }
 
         private async Task UpdateDifficulty()
